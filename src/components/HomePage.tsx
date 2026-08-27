@@ -127,8 +127,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div id="hero-bg-wrapper" className="absolute inset-0 opacity-40">
           <img
             id="hero-bg-img"
-            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=2560"
-            alt="University Campus Architecture"
+            src="https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg"
+            alt="University of Allahabad Senate Campus"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-[#111111]/80 to-[#111111]" />

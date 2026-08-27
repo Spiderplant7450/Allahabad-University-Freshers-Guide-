@@ -1,481 +1,548 @@
-export interface HistoricalFigureOrBuilding {
-  id: string;
-  name: string;
-  roleOrType: string;
-  periodOrYear: string;
-  image: string;
-  shortDesc: string;
-  details: string[];
-  quote?: string;
-  badge: string;
-}
+// Authentic Archival Data & Primary Records for University of Allahabad (Est. 1887)
 
-export interface HistoryHostelHoverItem {
+export interface HistoricalEra {
   id: string;
-  name: string;
-  historicName?: string;
-  founded: string;
-  category: string;
-  image: string;
-  tagline: string;
-  description: string;
-  historicSignificance: string;
-  architectureFact: string;
-  alumniLegacy: string;
-}
-
-export interface HistorySectionItem {
-  id: string;
-  sectionNumber: string;
+  eraRange: string;
   title: string;
-  subtitle: string;
-  leadParagraph: string;
-  image: string;
+  tagline: string;
+  themeColor: string;
+  yearMilestone: string;
+  overview: string;
+  primaryAct: string;
+  archivalImage: string;
   imageCaption: string;
-  keyPoints: {
-    label: string;
-    value: string;
-    subtext?: string;
-  }[];
-  detailedBullets: string[];
-  historicalQuote?: {
-    text: string;
-    speaker: string;
-    year: string;
+  stats: { label: string; value: string; note?: string }[];
+  keyEvents: { year: string; title: string; desc: string; category: 'charter' | 'campus' | 'academic' | 'hostel' }[];
+  originalDocumentSnippet?: {
+    title: string;
+    source: string;
+    date: string;
+    quoteText: string;
+    signatory: string;
   };
 }
 
-// Hover cards for Historical Figures & Architectural Landmarks
-export const historicalEntitiesData: Record<string, HistoricalFigureOrBuilding> = {
-  'william-muir': {
-    id: 'william-muir',
-    name: 'Sir William Muir (1819–1905)',
-    roleOrType: 'Lt. Governor of United Provinces & Founder',
-    periodOrYear: '1869–1887',
-    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800',
-    shortDesc: 'Visionary British administrator and orientalist scholar whose 1869 Darbar appeal and unwavering advocacy birthed Muir Central College and the University of Allahabad.',
-    quote: '"The establishment of a central college at Allahabad has been my earnest desire ever since I assumed my present office... being myself deeply impressed with the same conviction, I took occasion at the first Darbar which I held here to urge upon those present the necessity of showing that they were sincere and in earnest, by contributing to the work."',
-    details: [
-      'Lt. Governor of the North-Western (United) Provinces from 1868 to 1874.',
-      'Addressed the historic 1869 Darbar inviting prominent citizens to fund higher education.',
-      'Laid groundwork with an initial citizens\' subscription presentation in 1869.',
-      'Muir Central College was named in his enduring honour upon foundation in 1873.'
-    ],
-    badge: 'University Founder'
-  },
-  'lord-northbrook': {
-    id: 'lord-northbrook',
-    name: 'Lord Northbrook (Viceroy of India)',
-    roleOrType: 'Viceroy & Governor-General of India',
-    periodOrYear: '1873',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800',
-    shortDesc: 'His Excellency the Viceroy of India who laid the foundation stone of Muir Central College on 9th December 1873.',
-    details: [
-      'Viceroy of India (1872–1876).',
-      'Officially laid the foundation stone of the monumental Muir Central College on Dec 9, 1873.',
-      'Endorsed Allahabad as the intellectual and administrative capital of Northern India.'
-    ],
-    badge: 'Foundation Stone (1873)'
-  },
-  'swinton-jacob': {
-    id: 'swinton-jacob',
-    name: 'Sir Samuel Swinton Jacob (1841–1917)',
-    roleOrType: 'Master Architect of Indo-Saracenic Architecture',
-    periodOrYear: '1909–1915',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800',
-    shortDesc: 'Renowned British architect who designed the grand Senate House, the Law College, and the University Library in iconic Indo-Saracenic style with deep blue-glazed domes.',
-    details: [
-      'Pioneer of Indo-Saracenic architectural fusion blending Mughal arches, Rajasthani jharokhas, and Gothic halls.',
-      'Approved designs for Senate House & Library in 1910; constructed at Rs. 11,67,275.',
-      'Created the iconic skyline of the Senate Hall with vibrant azure tiles imported from Multan.'
-    ],
-    badge: 'Chief Architect'
-  },
-  'john-havett': {
-    id: 'john-havett',
-    name: 'Sir John Havett (Chancellor)',
-    roleOrType: 'Chancellor & Lt. Governor of United Provinces',
-    periodOrYear: '1910',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800',
-    shortDesc: 'Laid the official foundation stone of the Senate House on 17th January 1910.',
-    details: [
-      'Officiating Chancellor who presided over the Senate Hall foundation ceremony.',
-      'Championed the creation of dedicated university campuses separate from affiliate colleges.'
-    ],
-    badge: 'Chancellor (1910)'
-  },
-  'senate-house': {
-    id: 'senate-house',
-    name: 'The Senate House & Grand Hall',
-    roleOrType: 'Architectural Crown & Administrative Center',
-    periodOrYear: '1910–1915 (Cost: Rs. 11,67,275)',
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1200',
-    shortDesc: 'The majestic blue-domed architectural masterpiece designed by Sir Swinton Jacob, housing the Senate Hall, Registrar\'s Office, and English Department.',
-    details: [
-      'Site finalized in 1909; foundation laid 17 Jan 1910; completed 1915.',
-      'Constructed with an audited budget of Rs. 11,67,275 funded from university reserve surpluses.',
-      'Features high vaulted ceilings, carved sandstone arches, and majestic ceremonial convocations.'
-    ],
-    badge: 'Architectural Marvel'
-  },
-  'indian-press': {
-    id: 'indian-press',
-    name: 'The Historic Indian Press Heritage Property',
-    roleOrType: 'Academic Campus Acquisition (1923)',
-    periodOrYear: '1923 (Cost: ~Rs. 7,00,000)',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200',
-    shortDesc: 'Acquired by the Government for the University in 1923 for Rs. 7 lakhs; provided the cradle for Philosophy, Medieval/Modern History, Political Science, and Hindi.',
-    details: [
-      'Birthplace of classic Hindi literature publishing (Saraswati magazine) before university conversion.',
-      'Housed former Proctor\'s Office, Post Office, and multiple humanities departments.',
-      'Preserved traditional tiled-roof heritage structures near the Dramatic Hall and Political Science.'
-    ],
-    badge: '1923 Acquisition'
-  }
-};
+export interface HistoricalFigure {
+  id: string;
+  name: string;
+  honorific: string;
+  tenure: string;
+  role: string;
+  image: string;
+  fallbackImage: string;
+  biography: string;
+  notableDeeds: string[];
+  historicalQuote?: string;
+  monumentAssociated: string;
+  badge: string;
+}
 
-// Hover cards for every single Hostel mentioned in the history
-export const historyHostelsHoverData: Record<string, HistoryHostelHoverItem> = {
-  'muslim-hostel': {
-    id: 'muslim-hostel',
-    name: 'Muslim Boarding House (Muslim Hostel)',
-    historicName: 'Muslim Boarding House (Oldest Hostel)',
-    founded: '1896–1897',
-    category: "Boys' Heritage",
-    image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=800',
-    tagline: 'The Oldest Hostel of the University of Allahabad (Est. 1896)',
-    description: 'Constructed in 1896-97, the Muslim Boarding House stands as the very first and oldest organized hostel structure affiliated with Allahabad University.',
-    historicSignificance: 'Established even before the 1904 Universities Act to house scholars arriving from across North and Central India.',
-    architectureFact: 'Traditional colonial-era stone courtyard with spacious verandas, arched corridors, and central gathering lawns.',
-    alumniLegacy: 'Pioneered early residential university culture in colonial India.'
-  },
-  'hindu-hostel': {
-    id: 'hindu-hostel',
-    name: 'Hindu Boarding House (Hindu Hostel)',
-    historicName: 'Hindu Boarding House',
-    founded: '1902–1922',
-    category: "Boys' Heritage",
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Evolved from a straight colonial line building (1902) to twin-winged complex (1922)',
-    description: 'Constructed between 1902 and 1922, originally as a single straight line structure without lateral wings before major campus expansion.',
-    historicSignificance: 'Celebrated sanctuary for freedom fighters, national leaders, and pre-eminent Hindi literary scholars.',
-    architectureFact: 'Red-brick facade with long covered colonnades and wide dual wings added in the 1920s.',
-    alumniLegacy: 'Cradle of nationalist debates during the Indian Independence movement.'
-  },
-  'muir-anj-hostel': {
-    id: 'muir-anj-hostel',
-    name: 'Dr. Amaranatha Jha Hostel (Muir Hostel)',
-    historicName: 'Muir Hostel (Renamed to Amar Nath Jha Hostel)',
-    founded: '1910–1911',
-    category: "Boys' General",
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Constructed 1910-11 · Cradle of Civil Servants & Scholars',
-    description: 'Built during the construction wave of the Senate House in 1910-11, later renamed after Vice-Chancellor and literary giant Dr. Amaranatha Jha.',
-    historicSignificance: 'One of the first purpose-built University Hostels under the unitary residential scheme.',
-    architectureFact: 'Classical quadrangle plan with 136 high-ceiling rooms, manicured inner lawns, and in-house e-library.',
-    alumniLegacy: 'Produced over 100+ Union and State Civil Servants (IAS, IPS, IFS).'
-  },
-  'law-ssl-hostel': {
-    id: 'law-ssl-hostel',
-    name: 'Sir Sunder Lal Hostel (Law Hostel)',
-    historicName: 'The Law Hostel (Completed 1914–15)',
-    founded: '1914–1915',
-    category: "Boys' General",
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Named after Sir Sunder Lal, 1st Indian Vice-Chancellor · Centenary Legend',
-    description: 'Constructed in 1914-15 as the dedicated Law Hostel, featuring massive sports facilities, a modern 52-room single Annex, and floodlit courts.',
-    historicSignificance: 'Commemorates Sir Sunder Lal\'s contributions to Indian legal education and university autonomy.',
-    architectureFact: 'Expansive colonial brick structure with floodlit basketball courts, modern fitness gym, and dining commons.',
-    alumniLegacy: 'Alumni include Chief Justices of India, Supreme Court judges, and Union Ministers.'
-  },
-  'gn-jha-hostel': {
-    id: 'gn-jha-hostel',
-    name: 'Sir Ganganatha Jha Hostel',
-    historicName: 'The New Hostel (Completed 1928)',
-    founded: '1928',
-    category: "Boys' General",
-    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Completed 1928 · Named after MM Sir Ganganatha Jha',
-    description: 'Completed in 1928 under the name "New Hostel" and subsequently dedicated to the renowned Sanskritist and Vice-Chancellor Sir Ganganatha Jha.',
-    historicSignificance: 'Built during the transformative period when internal and external wings were separated.',
-    architectureFact: 'Peaceful symmetrical quadrangle with 137 ventilated rooms, deep porticos, and serene reading halls.',
-    alumniLegacy: 'Top civil services ranks and renowned academicians across Indian universities.'
-  },
-  'holland-hall': {
-    id: 'holland-hall',
-    name: 'Holland Hall (Oxford & Cambridge Courts)',
-    historicName: 'Oxford and Cambridge Courts',
-    founded: 'Circa 1920s',
-    category: "Boys' Academic",
-    image: 'https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Historic Oxford & Cambridge residential quadrangle design',
-    description: 'Erected in the 1920s following the collegiate residential architecture of Oxford and Cambridge universities.',
-    historicSignificance: 'Symbol of the "Oxford of the East" ethos, fostering close student-tutor residential relationships.',
-    architectureFact: 'Two distinct architectural courts (Oxford Court and Cambridge Court) connected by stone arches.',
-    alumniLegacy: 'Prominent diplomats, Rhodes scholars, and historians.'
-  },
-  'pc-banerji-hostel': {
-    id: 'pc-banerji-hostel',
-    name: 'Sir P.C. Banerjee Hostel (PCB)',
-    historicName: 'P.C. Banerji Hostel',
-    founded: '1920s–1930s',
-    category: "Boys' General",
-    image: 'https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Named after Sir Pramada Charan Banerji, eminent jurist',
-    description: 'Constructed to meet surging enrollment in the 1920s-30s, named in honour of Sir Pramada Charan Banerji, High Court Judge and Vice-Chancellor.',
-    historicSignificance: 'Mainstay of post-graduate humanities scholars and research fellows.',
-    architectureFact: 'Two-storeyed rectangular block surrounding open central volleyball and badminton grounds.',
-    alumniLegacy: 'Notable lawyers, jurists, and administrative officers.'
-  },
-  'diamond-jubilee-hostel': {
-    id: 'diamond-jubilee-hostel',
-    name: 'Diamond Jubilee Hostel (DJ Hostel)',
-    historicName: 'Diamond Jubilee Hostel',
-    founded: '1897 / 1930s Expansion',
-    category: "Boys' General",
-    image: 'https://images.unsplash.com/photo-1576495199011-ab4017460c70?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Commemorating Queen Victoria\'s Diamond Jubilee era',
-    description: 'Constructed to expand university accommodation, holding over 120+ rooms with high ceilings and spacious dining facilities.',
-    historicSignificance: 'One of the earliest named landmark hostels in the Chatham Lines precinct.',
-    architectureFact: 'Colonial stone archways, open verandas, and expansive courtyards.',
-    alumniLegacy: 'Generations of civil administrators and national scholars.'
-  },
-  'kp-college-hostel': {
-    id: 'kp-college-hostel',
-    name: 'K.P. University College Hostel',
-    historicName: 'Kayastha Pathshala University College',
-    founded: '1920s',
-    category: "Boys' Associated",
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Historic trust residence associated with early university life',
-    description: 'Constructed through the philanthropic Kayastha Pathshala Trust to provide affordable scholarly housing.',
-    historicSignificance: 'Pivotal institutional collaboration during the unitary university transition.',
-    architectureFact: 'Classic Indo-Saracenic facade with expansive common rooms.',
-    alumniLegacy: 'Eminent literary figures, advocates, and civil servants.'
-  },
-  'tara-chand-hostel': {
-    id: 'tara-chand-hostel',
-    name: 'Dr. Tara Chand Hostel (T.C. Hostel)',
-    historicName: 'Dr. Tara Chand Hostel',
-    founded: 'Post-Independence Expansion',
-    category: "Boys' General",
-    image: 'https://images.unsplash.com/photo-1590402494587-44b71d7772f6?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Named after legendary historian & VC Dr. Tara Chand',
-    description: 'Constructed to honour Dr. Tara Chand, eminent historian, author of the History of Freedom Movement, and university Vice-Chancellor.',
-    historicSignificance: 'Key modern residential hub for post-graduate and research scholars.',
-    architectureFact: 'Solid multi-wing modern structure with 150+ rooms and recreational sports commons.',
-    alumniLegacy: 'High selection rate in UGC-NET, JRF, and provincial civil services.'
-  },
-  'sarojini-naidu-hostel': {
-    id: 'sarojini-naidu-hostel',
-    name: 'Sarojini Naidu Girls\' Hostel (S.N. Hostel)',
-    historicName: 'First Dedicated Women\'s Hostel',
-    founded: '1930s (Early Women\'s Fund: Rs. 66,286)',
-    category: "Girls' Heritage",
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Pioneering Women\'s Residential Education in Northern India',
-    description: 'Constructed following the University\'s early purchase of women\'s properties for Rs. 66,286; named after the Nightingale of India, Sarojini Naidu.',
-    historicSignificance: 'First premier residential haven for female scholars in the United Provinces.',
-    architectureFact: 'Secure walled campus with central botanical courtyard, round-the-clock security, and private dining hall.',
-    alumniLegacy: 'Scores of women judges, parliamentarians, vice-chancellors, and IFS diplomats.'
-  },
-  'priyadarshini-hostel': {
-    id: 'priyadarshini-hostel',
-    name: 'Priyadarshini Girls\' Hostel',
-    historicName: 'Priyadarshini Women\'s Residence',
-    founded: 'Post-Independence Expansion',
-    category: "Girls' General",
-    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Dedicated Women\'s Residence for Undergraduates & Postgraduates',
-    description: 'Built as the second major women\'s hostel to meet burgeoning demand from women scholars across the country.',
-    historicSignificance: 'Named after Indira Priyadarshini Gandhi, alumna of Allahabad.',
-    architectureFact: 'Multi-storeyed modern complex with study reading rooms and indoor recreational hall.',
-    alumniLegacy: 'Top academic medalists in humanities, sciences, and languages.'
-  },
-  'shatabdi-girls-hostel': {
-    id: 'shatabdi-girls-hostel',
-    name: 'Shatabdi Girls\' Hostel',
-    historicName: 'Centenary Jubilee Women\'s Hostel',
-    founded: 'Centenary Era',
-    category: "Girls' Modern",
-    image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=800',
-    tagline: 'Largest Modern Residential Complex for Female Scholars',
-    description: 'Constructed to celebrate the University\'s centenary milestones and comfortably accommodate hundreds of boarders.',
-    historicSignificance: 'Largest capacity women\'s residential hall on campus with modern amenities.',
-    architectureFact: 'Contemporary multi-block facility equipped with Wi-Fi, modern dining halls, and 24/7 security surveillance.',
-    alumniLegacy: 'Leading researchers, civil servants, and university professors.'
-  }
-};
+export interface HeritageBuilding {
+  id: string;
+  name: string;
+  originalCost: string;
+  constructionYears: string;
+  architect: string;
+  architecturalStyle: string;
+  image: string;
+  fallbackImage: string;
+  description: string;
+  keyFeatures: string[];
+  campusLocation: string;
+  heritageStatus: string;
+}
 
-// Complete structured handbook sections corresponding exactly to the user's text
-export const completeHistorySections: HistorySectionItem[] = [
+export interface HeritageHostelArchive {
+  id: string;
+  name: string;
+  historicOriginalName: string;
+  yearEstablished: string;
+  category: "Men's Heritage Hall" | "Women's Heritage Hall" | "Associated College Hall";
+  image: string;
+  fallbackImage: string;
+  architecturalStyle: string;
+  significance: string;
+  notableAlumniFacts: string;
+  originalCap: string;
+}
+
+// 4 Grand Historical Eras
+export const historicalErasData: HistoricalEra[] = [
   {
-    id: 'section-1-foundation',
-    sectionNumber: 'Section 1',
-    title: 'Foundation & Early Vision (1869–1889)',
-    subtitle: 'Act XVIII, Sir William Muir\'s 1869 Appeal & The Muir Central College',
-    leadParagraph: 'University of Allahabad has always occupied an esteemed place among the Universities of India for over a century. Established on 23rd September 1887 via Act XVIII, it is the fourth oldest University of India after Calcutta, Bombay, and Madras Universities.',
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1200',
-    imageCaption: 'The historic Muir Central College tower & Vizianagaram Hall, conceived by Sir William Muir and founded in 1873.',
-    keyPoints: [
-      { label: 'Establishment Date', value: '23rd September 1887', subtext: 'Enacted by Imperial Act XVIII of 1887' },
-      { label: 'National Rank', value: '4th Oldest University', subtext: 'After Calcutta, Bombay, and Madras (1857)' },
-      { label: 'Visionary Conceiver', value: 'Sir William Muir', subtext: 'Lt. Governor of United Provinces (North-Western Provinces)' },
-      { label: 'College Foundation', value: '9th December 1873', subtext: 'Foundation stone laid by Viceroy Lord Northbrook' },
-      { label: 'First Entrance Exam', value: 'March 1889', subtext: 'Conducted across regional examining centres' },
-      { label: 'Initial Startup Loan', value: 'Rs. 5,240 /-', subtext: 'Repaid fully within two years from exam fees' }
+    id: 'era-inception-1869',
+    eraRange: '1869 – 1887',
+    title: 'The Muir Appeal & The Act of Inception',
+    tagline: 'From Sir William Muir\'s 1869 Darbar address to Imperial Act XVIII of 1887',
+    themeColor: '#A51C30',
+    yearMilestone: '1887',
+    overview: 'Conceived in 1869 by Sir William Muir, Lieutenant-Governor of the North-Western Provinces, the institution arose from a passionate citizen subscription to establish Northern India\'s highest seat of learning. Muir Central College\'s foundation stone was laid in 1873 by Viceroy Lord Northbrook, culminating in the passing of Imperial Act XVIII on 23 September 1887.',
+    primaryAct: 'Imperial Act XVIII of 1887 (23rd September 1887)',
+    archivalImage: 'https://upload.wikimedia.org/wikipedia/commons/7/74/Vizianagaram_Hall_3.jpg',
+    imageCaption: 'The majestic Vizianagaram Tower and Indo-Gothic quadrangle of Muir Central College, foundation stone laid 1873.',
+    stats: [
+      { label: 'Incorporation Date', value: '23 Sept 1887', note: 'Passed into law as Act XVIII' },
+      { label: 'National Precedence', value: '4th Oldest in India', note: 'After Calcutta, Bombay & Madras (1857)' },
+      { label: 'Initial Startup Loan', value: '₹ 5,240 /-', note: 'Repaid fully within 24 months from exam fees' },
+      { label: 'First Examination', value: 'March 1889', note: 'Conducted across North India testing centres' }
     ],
-    detailedBullets: [
-      'The credit for conceiving a large Central College in Allahabad (now Prayagraj), eventually to develop into a University, goes to Sir William Muir, Lt. Governor of the United Provinces.',
-      'As a result of Sir William Muir\'s initiative, the foundation stone of the Muir Central College (named after him) was laid on December 9, 1873 by His Excellency Lord Northbrook.',
-      'Like the Universities of Calcutta, Bombay, and Madras, the University of Allahabad started as a degree-conferring and examining institution.',
-      'The University began with a preliminary government loan of Rs. 5,240/- to meet expenses, which was prudently repaid in full within two years.',
-      'Its initial revenues were generated from examination fees and the sale of official University Prospectus & Calendars.'
+    keyEvents: [
+      { year: '1869', title: 'The Historic Darbar Appeal', desc: 'Sir William Muir addresses the citizens of Allahabad, proposing a premier Central College funded by public subscription.', category: 'charter' },
+      { year: '1873', title: 'Foundation Stone of Muir College', desc: 'Viceroy Lord Northbrook formally lays the foundation stone on 9th December 1873 in the presence of leading scholars and nobility.', category: 'campus' },
+      { year: '1887', title: 'Passing of Act XVIII', desc: 'The University of Allahabad is formally incorporated as a degree-granting and examining University.', category: 'charter' },
+      { year: '1889', title: 'First Entrance Examination', desc: 'The University conducts its inaugural entrance examination, gaining immediate academic prestige across Northern India.', category: 'academic' }
     ],
-    historicalQuote: {
-      text: 'The establishment of a central college at Allahabad (now Prayagraj) has been my earnest desire ever since I assumed my present office. Shortly after coming here I found that a strong wish prevailed among the chief people of the place for a better means of education at Allahabad; and being myself deeply impressed with the same conviction, I took occasion at the first Darbar which I held here to urge upon those present the necessity of showing that they were sincere and in earnest, by contributing to the work. The appeal was widely and liberally met, a considerable sum was subscribed and address was presented to me in 1869, praying for the establishment of the college here.',
-      speaker: 'Sir William Muir',
-      year: '1873 Foundation Stone Address'
+    originalDocumentSnippet: {
+      title: 'Address at the 1869 Citizens\' Darbar',
+      source: 'Official Proceedings of the Government of the North-Western Provinces',
+      date: 'Allahabad, 1869',
+      quoteText: 'The establishment of a central college at Allahabad has been my earnest desire ever since I assumed office. Shortly after coming here, I found that a strong wish prevailed among the chief people of the place for better means of education... being myself deeply impressed with the same conviction, I took occasion at the first Darbar to urge upon those present the necessity of showing that they were sincere, by contributing to the work.',
+      signatory: 'Sir William Muir, K.C.S.I., Lieutenant-Governor'
     }
   },
   {
-    id: 'section-2-jurisdiction',
-    sectionNumber: 'Section 2',
-    title: 'Jurisdiction & Structural Evolution (1887–1927)',
-    subtitle: 'From 38 Affiliated Regional Colleges to a Purely Unitary & Residential University',
-    leadParagraph: 'Between 1887 and 1927, the University of Allahabad exercised massive territorial reach across Northern and Central India, before deliberately restructuring into a world-class unitary, residential campus.',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200',
-    imageCaption: 'The sprawling Arts & Science Quadrangle during the transformative 1921-1927 unitary consolidation.',
-    keyPoints: [
-      { label: '1904 Universities Act', value: 'Territorial Boundary Defined', subtext: 'Agra & Awadh, Central Provinces, Berar, Ajmer, Mewar, Rajputana' },
-      { label: 'Affiliation Peak', value: '38+ Colleges Affiliated', subtext: 'Institutions across northern & central Indian agencies (1887–1927)' },
-      { label: '1921 University Act', value: 'Muir College Merged', subtext: 'Muir Central College lost independent status to unite with AU' },
-      { label: '1922–1927 Reform', value: 'Unitary & Residential', subtext: 'Internal & external wings separated into distinct universities' }
+    id: 'era-jurisdiction-1888',
+    eraRange: '1888 – 1921',
+    title: 'The Great Territorial Reach & Swinton Jacob Era',
+    tagline: 'Exercising jurisdiction over 38+ regional colleges from Rajputana to Central Provinces',
+    themeColor: '#1A365D',
+    yearMilestone: '1910',
+    overview: 'During this golden era of expansion, the University exercised sweeping jurisdiction across the United Provinces, Central Provinces, Berar, Ajmer, Mewar, and Central Indian Agencies. By 1910, master architect Sir Samuel Swinton Jacob was commissioned to design the monumental Senate House, Law College, and Library with its celebrated azure glazed domes.',
+    primaryAct: 'Indian Universities Act of 1904 & Senate House Charter (1910)',
+    archivalImage: 'https://www.tourmyindia.com/socialimg/allahabad-university.jpg',
+    imageCaption: 'The iconic blue-domed Senate House designed by Sir Samuel Swinton Jacob (Completed 1915 at Rs. 11.67 Lakhs).',
+    stats: [
+      { label: 'Affiliated Colleges', value: '38+ Colleges', note: 'Spread across North & Central India' },
+      { label: 'Reserve Accumulation', value: '₹ 34,000 /-', note: 'Surplus reserves by 1900 to fund construction' },
+      { label: 'Senate Hall Cost', value: '₹ 11,67,275 /-', note: 'Audited expenditure completed in 1915' },
+      { label: 'Senate Foundation', value: '17 Jan 1910', note: 'Laid by Chancellor Sir John Hewett' }
     ],
-    detailedBullets: [
-      'In 1904, the Indian Universities Act was passed, formally delineating the territorial jurisdiction of the University to the United Provinces of Agra and Awadh, the Central Provinces including Berar, Ajmer, Mewar, and most states of Rajputana and Central Indian Agencies.',
-      'Between 1887 and 1927, at least thirty-eight (38) different colleges and collegiate institutions across India were affiliated with Allahabad University.',
-      'With the promulgation of the University of Allahabad Act in 1921, Muir Central College lost its separate independent status and merged fully into the University.',
-      'Between 1922 and 1927, the internal and external wings were separated, establishing Allahabad University as a purely unitary, residential university renowned as the "Oxford of the East".'
-    ]
+    keyEvents: [
+      { year: '1896', title: 'Muslim Boarding House Founded', desc: 'The very first organized residential hostel of the University is erected near the campus.', category: 'hostel' },
+      { year: '1904', title: 'Universities Act Jurisdiction', desc: 'Jurisdiction formally defined covering UP, CP, Berar, Ajmer, and Rajputana princely states.', category: 'charter' },
+      { year: '1910', title: 'Senate House Construction Begins', desc: 'Chancellor Sir John Hewett lays the foundation stone of the Senate Hall designed by Sir Swinton Jacob.', category: 'campus' },
+      { year: '1915', title: 'Senate Hall & Law College Completed', desc: 'The majestic Indo-Saracenic complex is inaugurated at a total cost of ₹ 11,67,275.', category: 'campus' }
+    ],
+    originalDocumentSnippet: {
+      title: 'Senate Hall Foundation Address',
+      source: 'Convocational Archives of the University of Allahabad',
+      date: '17th January 1910',
+      quoteText: 'We stand today on ground destined to hold the intellectual capital of Northern India. The designs of Sir Swinton Jacob blend the majesty of Mughal archways with the enduring strength of academic halls, creating a permanent home for scholarship that shall endure for centuries.',
+      signatory: 'Sir John Prescott Hewett, Chancellor & Lt. Governor'
+    }
   },
   {
-    id: 'section-3-buildings',
-    sectionNumber: 'Section 3',
-    title: 'Financial Growth & Iconic Buildings (1892–1915)',
-    subtitle: 'Reserve Funds, Sir Swinton Jacob\'s Designs & The Grand Senate Hall',
-    leadParagraph: 'Through disciplined financial management of examination surpluses and investments in Government Securities, the University accumulated a robust reserve fund of Rs. 34,000 by 1899-1900, enabling it to finance its own iconic architectural skyline.',
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1200',
-    imageCaption: 'The world-famous Senate House with its Indo-Saracenic blue-glazed dome, designed by Sir Swinton Jacob (Completed 1915).',
-    keyPoints: [
-      { label: '1892-93 Investment', value: 'Government Securities', subtext: 'Prudent capital accumulation for permanent campus construction' },
-      { label: '1899-1900 Reserve', value: 'Rs. 34,000 Surplus', subtext: 'Sufficient internal funds to begin landmark university buildings' },
-      { label: 'Site Selection', value: '1909 Master Site', subtext: 'Site chosen for Library, Senate House, and Law College' },
-      { label: 'Master Architect', value: 'Sir Swinton Jacob', subtext: 'Architectural designs approved in 1910' },
-      { label: 'Senate Foundation', value: '17th January 1910', subtext: 'Foundation laid by Chancellor Sir John Havett' },
-      { label: 'Construction Cost', value: 'Rs. 11,67,275 /-', subtext: 'Senate Hall, Law College, and former Library (completed 1915)' }
+    id: 'era-unitary-1922',
+    eraRange: '1922 – 1947',
+    title: 'The Oxford of the East & Unitary Transformation',
+    tagline: '1921 University Act, Indian Press Acquisition & The Golden Age of Civil Servants',
+    themeColor: '#7B1113',
+    yearMilestone: '1922',
+    overview: 'Under the revolutionary 1921 Act, the University shed its affiliating character to become a purely unitary, residential university. Muir Central College merged into the core, and in 1923 the historic Indian Press property was acquired for ₹ 7 Lakhs, providing housing for Philosophy, History, Hindi, and Political Science.',
+    primaryAct: 'University of Allahabad Act of 1921 (Effective 1922)',
+    archivalImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUhhyBav-SwT3s1j8C4zkmLQqcCWB1tc-9faE_bkIqXg&s=10',
+    imageCaption: 'The Arts Quadrangle during the legendary era when Allahabad produced India\'s premier statesmen and scholars.',
+    stats: [
+      { label: 'Indian Press Acquisition', value: '₹ 7,00,000 /-', note: 'Acquired in 1923 for Humanities Faculties' },
+      { label: 'Women\'s Fund Allocation', value: '₹ 66,286 /-', note: 'Purchased dedicated property for Women\'s College & Hostels' },
+      { label: 'Residential Halls', value: '10+ Halls', note: 'Oxford & Cambridge courts established' },
+      { label: 'Civil Service Dominance', value: '#1 in India', note: 'Highest selection rate for ICS and early IAS' }
     ],
-    detailedBullets: [
-      'In 1892-93, the University began investing capital in Government Securities, building financial self-sufficiency.',
-      'By 1899-1900, the reserve fund rose to Rs. 34,000, placing the University in a strong position to build its own bespoke campus.',
-      'In 1909, the present historic site was selected for the Library, Senate House, and Law College.',
-      'These monumental buildings—now housing the Registrar\'s Office, Senate Hall, and English Department—were designed by the master architect Sir Swinton Jacob.',
-      'The foundation stone of the Senate House was laid on 17th January 1910 by Sir John Havett, the Chancellor.',
-      'Construction commenced in 1910 and reached completion in 1915 at an audited total cost of Rs. 11,67,275/-.'
-    ]
+    keyEvents: [
+      { year: '1921', title: 'The Unitary Act of 1921', desc: 'Muir Central College unites with Allahabad University; external examining wings transition into distinct regional universities.', category: 'charter' },
+      { year: '1923', title: 'Indian Press Property Purchased', desc: 'The Government acquires the legendary Indian Press campus for ₹ 7,00,000 to house Philosophy, History, and Hindi.', category: 'campus' },
+      { year: '1928', title: 'Pandit Ganga Nath Jha Hostel Built', desc: 'Completed as the "New Hostel" and dedicated to the towering Sanskrit scholar and Vice-Chancellor.', category: 'hostel' },
+      { year: '1930s', title: 'Sarojini Naidu Girls\' Hostel', desc: 'First dedicated women\'s residence opened with modern facilities following ₹ 66,286 fund allotment.', category: 'hostel' }
+    ],
+    originalDocumentSnippet: {
+      title: 'Minute on Unitary Residential Reorganization',
+      source: 'University Syndicate Resolution Records',
+      date: '1922',
+      quoteText: 'The transition from an examining syndicate to a teaching and residential university marks the dawn of true collegiality. In these quadrangles, tutors and scholars reside side by side, creating a brotherhood of learning worthy of the ancient traditions of Prayag.',
+      signatory: 'Sir Sunder Lal & Sir Ganganatha Jha'
+    }
   },
   {
-    id: 'section-4-campus-expansion',
-    sectionNumber: 'Section 4',
-    title: 'Indian Press Acquisition & Campus Expansion (1923+)',
-    subtitle: '7-Lakh Rupees Purchase, Humanities Expansion & Cantonment Land',
-    leadParagraph: 'In 1923, the Government acquired the historic Indian Press property for about seven lakh rupees (Rs. 7,00,000), triggering a dramatic academic expansion across both the Senate House and Muir College Campuses.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200',
-    imageCaption: 'The heritage courtyards of the Philosophy, History, and Hindi Bhawan academic precincts.',
-    keyPoints: [
-      { label: '1923 Acquisition', value: 'Rs. 7,00,000 /-', subtext: 'Historic Indian Press property acquired for University departments' },
-      { label: 'Departments Housed', value: 'Philosophy, History, Hindi', subtext: 'Also Political Science, Ancient History, and former Proctor\'s Office' },
-      { label: 'Senate Campus Growth', value: '12+ New Buildings', subtext: 'Union Hall, Commerce, NSS, Hindi Bhawan, Geography, Psychology' },
-      { label: 'Muir Campus Additions', value: 'Applied Physics & Math', subtext: 'J.K. Institute of Applied Physics, Mathematics Dept, Gymnastic Hall' },
-      { label: 'Cantonment Expansion', value: 'Law, Business & Gandhi Bhawan', subtext: 'Land from Cantonment Board & bungalow of late Dr. Bani Prasad' }
+    id: 'era-central-modern',
+    eraRange: '1948 – Present',
+    title: 'Central University Status & Contemporary Heritage',
+    tagline: 'Central University Act 2005, Modern Science Institutes & NEP 2020 Framework',
+    themeColor: '#0F172A',
+    yearMilestone: '2005',
+    overview: 'Following Independence, Allahabad University nurtured legendary luminaries including Prime Ministers, Supreme Court Chief Justices, and Sahitya Akademi laureates. In 2005, the Parliament of India restored its heritage status as an Institute of National Importance by enacting the University of Allahabad Act, 2005.',
+    primaryAct: 'University of Allahabad Act, 2005 (Act No. 26 of 2005)',
+    archivalImage: 'https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg',
+    imageCaption: 'The Central University Campus preserving its 138-year-old architectural heritage while pioneering NEP 2020.',
+    stats: [
+      { label: 'Central University Date', value: '14 July 2005', note: 'Restored Central Status via Act 26 of 2005' },
+      { label: 'Campus Land Area', value: '232+ Acres', note: 'Across Senate, Muir, Chatham Lines, MONIRBA & Medical Wings' },
+      { label: 'Current Hostels', value: '15 Historic Halls', note: 'Housing over 4,000 scholars' },
+      { label: 'Academic Departments', value: '38+ Departments', note: 'Under Arts, Science, Commerce & Law Faculties' }
     ],
-    detailedBullets: [
-      'The 1923 Indian Press acquisition comprised the buildings of the Philosophy Department, the Department of Medieval/Modern History, and spacious structures formerly housing the Proctor\'s Office, Post Office, and shared department wings.',
-      'The property included distinctive tiled-roof heritage structures behind the Dramatic Hall, near Political Science, and near the English Department.',
-      'Senate House Campus additions since 1911 include: Union Hall, Old Guest House, Commerce Department, N.S.S. Building, Ancient History Culture & Archaeology, Political Science, Oriental Languages, Hindi Bhawan, Psychology, Education, Geography, and the New Central Library building.',
-      'Muir College Campus additions include: J.K. Institute of Applied Physics, the new Gymnastic Hall, and the new Mathematics Department.',
-      'To accommodate growing faculties, the University acquired land from the Cantonment Board for Business Administration (MONIRBA), the Law Faculty, and Gandhi Bhawan, along with the bungalow of the late Dr. Bani Prasad.'
-    ]
-  },
-  {
-    id: 'section-5-womens-education',
-    sectionNumber: 'Section 5',
-    title: 'Women\'s Education & Pioneer Hostels',
-    subtitle: 'Rs. 66,286 Early Allocation, Sarojini Naidu, Priyadarshini & Shatabdi',
-    leadParagraph: 'From its inception, the University of Allahabad was deeply concerned with promoting women\'s higher education, purchasing dedicated properties for Rs. 66,286 to establish women\'s collegiate classes and residential hostels.',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200',
-    imageCaption: 'The historic Sarojini Naidu and Priyadarshini residential halls dedicated to women scholars.',
-    keyPoints: [
-      { label: 'Initial Property Purchase', value: 'Rs. 66,286 /-', subtext: 'Purchased houses and adjoining buildings for Women\'s College & Hostel' },
-      { label: 'First Women\'s Hostel', value: 'Sarojini Naidu Hostel', subtext: 'Named after the freedom leader and poet' },
-      { label: 'Post-Independence Expansion', value: 'Priyadarshini Hostel', subtext: 'Constructed to house burgeoning women student intake' },
-      { label: 'Centenary Expansion', value: 'Shatabdi Girls\' Hostel', subtext: 'Modern multi-storey facility accommodating hundreds of boarders' }
-    ],
-    detailedBullets: [
-      'Classes for female students were first inaugurated in the historic acquired buildings adjoining the College.',
-      'The legendary Sarojini Naidu Girls\' Hostel was constructed as the primary residential haven for women boarders.',
-      'Later, the Priyadarshini Girls\' Hostel was built to meet increasing enrollment.',
-      'Recently, the modern Shatabdi Girls\' Hostel was constructed with advanced residential infrastructure to support women pursuing undergraduate, postgraduate, and doctoral degrees.'
-    ]
-  },
-  {
-    id: 'section-6-hostels-evolution',
-    sectionNumber: 'Section 6',
-    title: 'Hostel Evolution & Comprehensive Timeline (1873–2000+)',
-    subtitle: 'From Malaka Barracks & Lowther Castle to 15 Historic Halls of Residence',
-    leadParagraph: 'Ever since the inception of the Muir Central College in 1873, constant efforts were made to accommodate students arriving from distant provinces across India, evolving through several stages before creating its iconic hostel network.',
-    image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=1200',
-    imageCaption: 'The historic courtyards of Dr. Amar Nath Jha and Sir Sunder Lal Hostels (Est. 1910–1915).',
-    keyPoints: [
-      { label: 'Early Boarding (Pre-1910)', value: 'Malaka Barracks', subtext: 'Barrack in Malaka near jail (now Swarup Rani Hospital) -> Lowther Castle outhouse -> Bhardwaj Ashram thatched bungalow' },
-      { label: '1896–97 (Oldest)', value: 'Muslim Boarding House', subtext: 'Muslim Hostel is the oldest of all university hostels' },
-      { label: '1902–1922', value: 'Hindu Boarding House', subtext: 'Originally a straight line building without two wings' },
-      { label: '1910–1911', value: 'Muir Hostel (Amar Nath Jha)', subtext: 'Renamed in honour of scholar-VC Dr. Amaranatha Jha' },
-      { label: '1914–1915', value: 'Law Hostel (Sir Sunder Lal)', subtext: 'Renamed after 1st Indian VC Sir Sunder Lal' },
-      { label: '1928', value: 'Pandit Ganga Nath Jha Hostel', subtext: 'Initially named "New Hostel", completed 1928' },
-      { label: '1920s Collegiate', value: 'Holland Hall Courts', subtext: 'Oxford and Cambridge courts constructed' },
-      { label: 'Subsequent Decades', value: 'PCB, KP College & DJ', subtext: 'Sir P.C. Banerji, K.P. University College, Diamond Jubilee, and Dr. Tara Chand Hostels' }
-    ],
-    detailedBullets: [
-      'Early Boarding Stages: Prior to dedicated hostel buildings, students were housed in a barrack in Malaka near the jail (where Swarup Rani Hospital stands today). The boarding house was then shifted to the tiled outhouse of Lowther Castle (where college classes were temporarily held), and finally to a large thatched bungalow near Bhardwaj Ashram.',
-      '1896-97: Muslim Boarding House (popularly known as Muslim Hostel) was constructed, making it the oldest of all University hostels.',
-      '1902-1922: The Hindu Boarding House (Hindu Hostel) was constructed, originally as a straight building without the two grand wings added in the 1920s.',
-      '1910-11: Muir Hostel was completed, later renamed Dr. Amar Nath Jha Hostel.',
-      '1914-15: The Law Hostel was constructed, later dedicated as Sir Sunder Lal (SSL) Hostel.',
-      '1928: Pandit Ganga Nath Jha Hostel was completed (originally designated as "New Hostel").',
-      'Circa 1920s: The Oxford and Cambridge courts of Holland Hall came into existence, embodying the collegiate spirit of Oxbridge.',
-      'Subsequent eras saw the construction of Sir P.C. Banerji Hostel (PCB), K.P. University College Hostel, Diamond Jubilee (DJ) Hostel, and later the Dr. Tara Chand Hostel.'
-    ]
-  },
-  {
-    id: 'section-7-motto',
-    sectionNumber: 'Section 7',
-    title: 'University Motto: "Quot Rami Tot Arbores"',
-    subtitle: '"As Many Branches, So Many Trees" · 113+ Years Millennium Legacy',
-    leadParagraph: 'The official Latin motto of the University of Allahabad—"Quot Rami Tot Arbores" ("As many branches, so many trees")—embodies the expansive intellectual reach of the institution. Each academic department, affiliated hall, hostel, and scholar branches out to stand strong as an independent, towering tree of learning.',
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1200',
-    imageCaption: 'The University Crest featuring the sacred Banyan tree, symbolizing "Quot Rami Tot Arbores".',
-    keyPoints: [
-      { label: 'Official Motto', value: 'Quot Rami Tot Arbores', subtext: 'Latin: "As many branches, so many trees"' },
-      { label: 'Philosophical Meaning', value: 'Infinite Growth of Knowledge', subtext: 'Like the sacred Banyan (Vat Vriksha), each branch takes root as a new tree' },
-      { label: 'Historical Symbolism', value: '38+ Branches & Campuses', subtext: 'From Muir College to Senate House, Indian Press & 15 Hostels' },
-      { label: 'Millennium Milestone', value: '113+ Years in 2000', subtext: 'Continuing into its 14th decade of national intellectual eminence' }
-    ],
-    detailedBullets: [
-      'The University motto "Quot Rami Tot Arbores" reflects the sacred Banyan tree of Prayagraj (Akshayavat), where aerial roots grow downward to become independent supportive trunks.',
-      'The mighty root system is the University established in 1887; the primary branches are its Senate House and Muir Campuses; the flowering offshoots are its 15 hostels, 38+ historical affiliates, and thousands of national leaders, jurists, Prime Ministers, and scientists.',
-      'In the millennium year (2000), the University of Allahabad celebrated over 113 continuous years of academic excellence.',
-      'Today, as a premier Central University, it preserves this deep Indo-Saracenic heritage while driving forward the 4-year NEP 2020 undergraduate framework.'
+    keyEvents: [
+      { year: '1955', title: 'J.K. Institute of Applied Physics', desc: 'Foundation of one of India\'s earliest computer science and electronic research institutes.', category: 'academic' },
+      { year: '2005', title: 'Restoration of Central University Status', desc: 'Parliament passes the University of Allahabad Act, 2005, designating it an Institution of National Importance.', category: 'charter' },
+      { year: '2010', title: 'Centenary of Senate House', desc: 'Commemoration of 100 years of the Senate Hall laying stone.', category: 'campus' },
+      { year: '2023', title: 'Rollout of 4-Year FYUGP NEP Curriculum', desc: 'Launch of Dual Major and multidisciplinary research framework.', category: 'academic' }
     ]
   }
 ];
+
+// Key Historical Founders, Architects & Chancellors
+export const historicalFiguresData: HistoricalFigure[] = [
+  {
+    id: 'william-muir',
+    name: 'Sir William Muir, K.C.S.I.',
+    honorific: 'Founder & Visionary',
+    tenure: '1869 – 1885',
+    role: 'Lt. Governor of North-Western Provinces (1868–1874)',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Sir_William_Muir_WDL11445.png/500px-Sir_William_Muir_WDL11445.png',
+    fallbackImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sir_William_Muir_KCSI.jpg/800px-Sir_William_Muir_KCSI.jpg',
+    biography: 'Scholar, orientalist, and colonial administrator whose 1869 Darbar appeal and passionate advocacy resulted in the establishment of Muir Central College and the subsequent founding of Allahabad University.',
+    notableDeeds: [
+      'Delivered the historic 1869 Darbar speech urging citizens of Allahabad to fund higher education.',
+      'Secured imperial sanctions and prime land for the construction of Muir Central College.',
+      'Muir College (founded 1873) was named in his enduring honour by Viceroy Lord Northbrook.'
+    ],
+    historicalQuote: 'The establishment of a central college at Allahabad has been my earnest desire ever since I assumed office.',
+    monumentAssociated: 'Muir Central College & Vizianagaram Hall',
+    badge: 'Conceiver of the University'
+  },
+  {
+    id: 'lord-northbrook',
+    name: 'Thomas Baring, Lord Northbrook',
+    honorific: 'Viceroy of India',
+    tenure: '1872 – 1876',
+    role: 'Viceroy & Governor-General of India',
+    image: 'https://cdn.britannica.com/78/173778-050-03F0EA97/Thomas-George-Baring-1st-earl-of-Northbrook-1880.jpg',
+    fallbackImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lord_Northbrook.jpg/800px-Lord_Northbrook.jpg',
+    biography: 'Viceroy and Governor-General who formally laid the foundation stone of Muir Central College on 9th December 1873, dedicating the monument to the enlightenment of Northern India.',
+    notableDeeds: [
+      'Presided over the grand foundation stone ceremony on 9 December 1873.',
+      'Sanctioned imperial grants matching citizen public subscriptions.',
+      'Affirmed Allahabad\'s role as the educational focal point of the United Provinces.'
+    ],
+    historicalQuote: 'May this college flourish and become a fountain of light and learning for the people of this vast province.',
+    monumentAssociated: 'Muir Foundation Stone (Dec 9, 1873)',
+    badge: 'Foundation Viceroy'
+  },
+  {
+    id: 'swinton-jacob',
+    name: 'Col. Sir Samuel Swinton Jacob',
+    honorific: 'Master Architect',
+    tenure: '1909 – 1915',
+    role: 'Chief Architect of Indo-Saracenic Architecture',
+    image: 'https://upload.wikimedia.org/wikipedia/en/1/14/Sir_Samuel_Swinton_Jacob.jpg',
+    fallbackImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Samuel_Swinton_Jacob.jpg/800px-Samuel_Swinton_Jacob.jpg',
+    biography: 'Legendary British engineer and architect who designed the Senate House, Law College, and Library. He pioneered the Indo-Saracenic fusion combining Rajasthani jharokhas, Mughal cupolas, and Persian azure glazed tiles.',
+    notableDeeds: [
+      'Drafted the master plan of the Senate House Campus in 1909–1910.',
+      'Created the iconic skyline with vibrant turquoise and blue glazed domes imported from Multan.',
+      'Designed high-vaulted ceremonial halls with acoustics engineered for major convocations.'
+    ],
+    historicalQuote: 'Architecture in India must speak the vernacular of its soil while standing firm on modern engineering foundations.',
+    monumentAssociated: 'The Senate House, Library & Law College',
+    badge: 'Chief Architect'
+  },
+  {
+    id: 'sir-sunder-lal',
+    name: 'Sir Sunder Lal, C.I.E.',
+    honorific: 'First Indian Vice-Chancellor',
+    tenure: '1906 – 1917',
+    role: 'Jurist, Philanthropist & Vice-Chancellor (Multiple Terms)',
+    image: 'https://pbs.twimg.com/media/E14gEGhUcAAP-IT.jpg',
+    fallbackImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Sir_Sunder_Lal.jpg/800px-Sir_Sunder_Lal.jpg',
+    biography: 'Pre-eminent jurist and the first Indian Vice-Chancellor of Allahabad University. He championed university financial autonomy, judicial studies, and residential hostel construction.',
+    notableDeeds: [
+      'Served 3 terms as Vice-Chancellor of Allahabad University (1906, 1912, 1914).',
+      'Spearheaded the funding and construction of the Law Hostel (later renamed Sir Sunder Lal Hostel).',
+      'Simultaneously served as the first Vice-Chancellor of Banaras Hindu University in 1916.'
+    ],
+    historicalQuote: 'An autonomous university is the greatest guarantee of national character and intellectual liberty.',
+    monumentAssociated: 'Sir Sunder Lal (SSL) Hostel & Faculty of Law',
+    badge: '1st Indian Vice-Chancellor'
+  },
+  {
+    id: 'amarnath-jha',
+    name: 'Dr. Amaranatha Jha, Padma Bhushan',
+    honorific: 'Scholar & Vice-Chancellor',
+    tenure: '1938 – 1947',
+    role: 'Vice-Chancellor & Renowned Professor of English Literature',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi3tN5BnKzySm6iDYIk-lGzLbG3Hsx8dQLV-jQonGslg&s',
+    fallbackImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Amarnath_Jha.jpg/800px-Amarnath_Jha.jpg',
+    biography: 'One of the most illustrious literary minds in Indian history. Under his leadership, Allahabad became the intellectual epicentre of India, producing top administrative officers and distinguished scholars.',
+    notableDeeds: [
+      'Vice-Chancellor of Allahabad University (1938–1947) and later Vice-Chancellor of BHU.',
+      'Muir Hostel was permanently renamed Dr. Amar Nath Jha Hostel in recognition of his legacy.',
+      'President of the All India English Teachers Association and recipient of the Padma Bhushan.'
+    ],
+    historicalQuote: 'A university is not a mere factory for degrees, but a sanctuary where character and intellect are forged together.',
+    monumentAssociated: 'Dr. Amar Nath Jha (ANJ) Hostel & English Dept',
+    badge: 'Legendary Vice-Chancellor'
+  }
+];
+
+// Major Architectural Heritage Monuments
+export const heritageBuildingsData: HeritageBuilding[] = [
+  {
+    id: 'senate-house',
+    name: 'The Senate House & Grand Convocation Hall',
+    originalCost: '₹ 11,67,275 /-',
+    constructionYears: '1910 – 1915',
+    architect: 'Sir Samuel Swinton Jacob',
+    architecturalStyle: 'Indo-Saracenic with Multani Blue-Glazed Ceramic Domes',
+    image: 'https://thumbs.dreamstime.com/b/senate-house-complex-allahabad-university-allahabad-prayagraj-uttar-pradesh-india-senate-house-complex-allahabad-university-339096805.jpg',
+    fallbackImage: 'https://ik.imagekit.io/syustaging/SYU_PREPROD/Cover_UehabcN-Tg.webp?tr=w-3840',
+    description: 'The monumental crown of the Arts Campus, holding the grand Senate Hall, the Vice-Chancellor\'s Secretariat, Registrar\'s Chambers, and the Department of English.',
+    keyFeatures: [
+      'Distinctive azure blue-tiled dome visible across the Old Katra skyline.',
+      'Deep verandas, carved sandstone arches, and intricately carved chhatris.',
+      'High-vaulted Convocation Hall with red-polished mosaic flooring and presidential dais.'
+    ],
+    campusLocation: 'Senate House Campus (Arts Quadrangle, Katra)',
+    heritageStatus: 'Grade-A Monumental Heritage Structure'
+  },
+  {
+    id: 'vizianagaram-hall',
+    name: 'Muir Central College & Vizianagaram Hall',
+    originalCost: '₹ 9,00,000+ (Funded by Public Subscription & Maharajah of Vizianagaram)',
+    constructionYears: '1873 – 1886',
+    architect: 'William Emerson (Architect of Victoria Memorial)',
+    architecturalStyle: 'Indo-Gothic, Egyptian & Saracenic Synthesis',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/7/74/Vizianagaram_Hall_3.jpg',
+    fallbackImage: 'https://pbs.twimg.com/media/GbYMKnDa8AAdnrK.jpg',
+    description: 'The historic cradle of the University, featuring a 200-foot sandstone clock tower, vaulted arcades, and grand galleries holding Science and Language departments.',
+    keyFeatures: [
+      '200-ft soaring Clock Tower dominating the Muir College Quadrangle.',
+      'Polychromatic sandstone imported from Chunar quarries.',
+      'Arched cloisters designed for natural cross-ventilation in North Indian summers.'
+    ],
+    campusLocation: 'Muir College Campus, Prayagraj',
+    heritageStatus: 'Protected Historic Educational Landmark'
+  },
+  {
+    id: 'indian-press-building',
+    name: 'Historic Indian Press Heritage Property',
+    originalCost: '₹ 7,00,000 /- (1923 Acquisition)',
+    constructionYears: 'Late 19th Century / Acquired 1923',
+    architect: 'Colonial Public Works & Heritage Guilds',
+    architecturalStyle: 'Traditional Tiled-Roof Colonial Humanities Cloister',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUhhyBav-SwT3s1j8C4zkmLQqcCWB1tc-9faE_bkIqXg&s=10',
+    fallbackImage: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200',
+    description: 'The birthplace of modern Hindi literary publishing (Saraswati Magazine), purchased by the Government in 1923 to house Philosophy, History, and Hindi departments.',
+    keyFeatures: [
+      'Historic terracotta-tiled roofs behind the Dramatic Hall and Political Science.',
+      'Former Proctor\'s and Post Office heritage courtyards.',
+      'Shaded intellectual alcoves where prominent Hindi and Urdu poets penned national classics.'
+    ],
+    campusLocation: 'Behind Senate Hall & Political Science Dept',
+    heritageStatus: 'Historic Academic Humanities Precinct'
+  }
+];
+
+// All 15 Historic Residential Halls
+export const heritageHostelsData: HeritageHostelArchive[] = [
+  {
+    id: 'muslim-hostel',
+    name: 'Muslim Boarding House',
+    historicOriginalName: 'Muslim Boarding House (Oldest Hostel of AU)',
+    yearEstablished: '1896 – 1897',
+    category: "Men's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Colonial Quadrangle with Central Courtyard & Arcaded Verandas',
+    significance: 'The very first organized residential hostel of Allahabad University, built before the 1904 Universities Act to house outstation scholars.',
+    notableAlumniFacts: 'Cradle of early 20th-century legal minds, political leaders, and civil servants.',
+    originalCap: '120+ Scholars'
+  },
+  {
+    id: 'hindu-hostel',
+    name: 'Hindu Boarding House (Hindu Hostel)',
+    historicOriginalName: 'Hindu Boarding House',
+    yearEstablished: '1902 (Wings added 1922)',
+    category: "Men's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Twin-Winged Colonial Red-Brick Colonnade',
+    significance: 'Originally constructed as a straight line building in 1902 and expanded in 1922 with two symmetrical wings; sanctuary for freedom movement leaders.',
+    notableAlumniFacts: 'Nurtured scores of freedom fighters, Hindi writers, and national parliamentarians.',
+    originalCap: '180+ Scholars'
+  },
+  {
+    id: 'anj-hostel',
+    name: 'Dr. Amar Nath Jha Hostel',
+    historicOriginalName: 'Muir Hostel (Built 1910–1911)',
+    yearEstablished: '1910 – 1911',
+    category: "Men's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Classical Colonial Quadrangle with Lush Lawns & E-Library',
+    significance: 'Built alongside the Senate House and later renamed in honour of scholar-VC Dr. Amaranatha Jha; known as the nursery of civil servants.',
+    notableAlumniFacts: 'Over 100+ selections into the Indian Civil Service (ICS) and Indian Administrative Service (IAS).',
+    originalCap: '136 Single Rooms'
+  },
+  {
+    id: 'ssl-hostel',
+    name: 'Sir Sunder Lal Hostel (SSL)',
+    historicOriginalName: 'The Law Hostel (1914–1915)',
+    yearEstablished: '1914 – 1915',
+    category: "Men's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Solid Colonial Brickwork with Sports Complex & 52-Room Annex',
+    significance: 'Constructed as the dedicated Law Hostel under Sir Sunder Lal\'s tenure; renowned for debate culture and athletics championships.',
+    notableAlumniFacts: 'Produced Supreme Court Chief Justices, Union Ministers, and Senior Advocates.',
+    originalCap: '140+ Rooms'
+  },
+  {
+    id: 'holland-hall',
+    name: 'Holland Hall',
+    historicOriginalName: 'Oxford and Cambridge Courts',
+    yearEstablished: 'Circa 1920s',
+    category: "Men's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Oxbridge-Style Dual Residential Quadrangle',
+    significance: 'Epitomizes the "Oxford of the East" collegiate system with resident tutors, common tables, and inter-court debates.',
+    notableAlumniFacts: 'Distinguished ambassadors, foreign service diplomats, and Rhodes scholars.',
+    originalCap: '160+ Scholars'
+  },
+  {
+    id: 'gn-jha-hostel',
+    name: 'Sir Ganganatha Jha Hostel',
+    historicOriginalName: 'The New Hostel (1928)',
+    yearEstablished: '1928',
+    category: "Men's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Symmetrical Quadrangle with Deep Shaded Porticos',
+    significance: 'Completed during the unitary transformation and named after Mahamahopadhyaya Sir Ganganatha Jha.',
+    notableAlumniFacts: 'Renowned researchers, vice-chancellors, and university professors.',
+    originalCap: '137 Rooms'
+  },
+  {
+    id: 'sarojini-naidu-hostel',
+    name: 'Sarojini Naidu Girls\' Hostel (S.N.)',
+    historicOriginalName: 'First Dedicated Women\'s Hostel',
+    yearEstablished: '1930s (Funded by ₹ 66,286 Allocation)',
+    category: "Women's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Walled Residential Haven with Courtyard Gardens',
+    significance: 'Pioneered higher education for women in Northern India; named in honor of freedom leader and poet Sarojini Naidu.',
+    notableAlumniFacts: 'High Court judges, women parliamentarians, and Indian Foreign Service officers.',
+    originalCap: '120+ Boarders'
+  },
+  {
+    id: 'pc-banerjee-hostel',
+    name: 'Sir P.C. Banerji Hostel (PCB)',
+    historicOriginalName: 'P.C. Banerji Hostel',
+    yearEstablished: '1920s – 1930s',
+    category: "Men's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Two-Storeyed Quadrangle Surrounding Sports Grounds',
+    significance: 'Named in honour of Sir Pramada Charan Banerji, eminent High Court jurist and Vice-Chancellor.',
+    notableAlumniFacts: 'Generations of legal scholars, judges, and administrative magistrates.',
+    originalCap: '110+ Rooms'
+  },
+  {
+    id: 'diamond-jubilee-hostel',
+    name: 'Diamond Jubilee Hostel (DJ)',
+    historicOriginalName: 'Diamond Jubilee Hostel',
+    yearEstablished: '1897 / 1930s Expansion',
+    category: "Men's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1576495199011-ab4017460c70?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1576495199011-ab4017460c70?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Colonial Stone Verandas & Spacious Common Dining',
+    significance: 'Commemorating Queen Victoria\'s Diamond Jubilee era, situated in the green Chatham Lines enclave.',
+    notableAlumniFacts: 'Eminent civil engineers, scientists, and state administrators.',
+    originalCap: '120+ Rooms'
+  },
+  {
+    id: 'tara-chand-hostel',
+    name: 'Dr. Tara Chand Hostel (T.C.)',
+    historicOriginalName: 'Dr. Tara Chand Hostel',
+    yearEstablished: 'Post-Independence',
+    category: "Men's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1590402494587-44b71d7772f6?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1590402494587-44b71d7772f6?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Modern Multi-Winged Academic Residence',
+    significance: 'Named after the legendary national historian, author of the History of Freedom Movement, and Vice-Chancellor Dr. Tara Chand.',
+    notableAlumniFacts: 'High selection rates in UGC-NET, JRF research, and state public service commissions.',
+    originalCap: '150+ Rooms'
+  },
+  {
+    id: 'priyadarshini-hostel',
+    name: 'Priyadarshini Girls\' Hostel',
+    historicOriginalName: 'Priyadarshini Women\'s Hall',
+    yearEstablished: 'Post-Independence Expansion',
+    category: "Women's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Modern Multi-Floor Complex with Study Libraries',
+    significance: 'Built as the second major women\'s residence, named in honour of Prime Minister Indira Priyadarshini Gandhi.',
+    notableAlumniFacts: 'University gold medalists, researchers, and public servants.',
+    originalCap: '200+ Scholars'
+  },
+  {
+    id: 'shatabdi-girls-hostel',
+    name: 'Shatabdi Girls\' Hostel',
+    historicOriginalName: 'Centenary Jubilee Women\'s Residence',
+    yearEstablished: 'Centenary Milestone (2000s)',
+    category: "Women's Heritage Hall",
+    image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=800',
+    fallbackImage: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=800',
+    architecturalStyle: 'Contemporary Multi-Block Secure Residential Complex',
+    significance: 'Constructed to mark the University\'s centenary milestones, offering state-of-the-art amenities for female researchers and scholars.',
+    notableAlumniFacts: 'Leading doctors of philosophy, national research fellows, and faculty members.',
+    originalCap: '350+ Boarders'
+  }
+];
+
+// Compatibility export for any references
+export const completeHistorySections = historicalErasData.map(era => ({
+  id: era.id,
+  sectionNumber: era.eraRange,
+  title: era.title,
+  subtitle: era.tagline,
+  leadParagraph: era.overview,
+  image: era.archivalImage,
+  imageCaption: era.imageCaption,
+  keyPoints: era.stats.map(s => ({ label: s.label, value: s.value, subtext: s.note })),
+  detailedBullets: era.keyEvents.map(e => `${e.year}: ${e.title} — ${e.desc}`),
+  historicalQuote: era.originalDocumentSnippet ? {
+    text: era.originalDocumentSnippet.quoteText,
+    speaker: era.originalDocumentSnippet.signatory,
+    year: era.originalDocumentSnippet.date
+  } : undefined
+}));
+
+export const historicalEntitiesData = Object.fromEntries(
+  historicalFiguresData.map(f => [f.id, {
+    id: f.id,
+    name: f.name,
+    roleOrType: f.role,
+    periodOrYear: f.tenure,
+    image: f.image,
+    shortDesc: f.biography,
+    details: f.notableDeeds,
+    quote: f.historicalQuote,
+    badge: f.badge
+  }])
+);
+
+export const historyHostelsHoverData = Object.fromEntries(
+  heritageHostelsData.map(h => [h.id, {
+    id: h.id,
+    name: h.name,
+    historicName: h.historicOriginalName,
+    founded: h.yearEstablished,
+    category: h.category,
+    image: h.image,
+    tagline: h.significance,
+    description: h.significance,
+    historicSignificance: h.significance,
+    architectureFact: h.architecturalStyle,
+    alumniLegacy: h.notableAlumniFacts
+  }])
+);

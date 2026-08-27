@@ -13,6 +13,8 @@ export interface HostelItem {
   keyFeatures: string;
   description: string;
   location: string;
+  image?: string;
+  fallbackImage?: string;
   highlights: string[];
 }
 
@@ -33,6 +35,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Recently renovated state-of-the-art building. Renowned for calm scholarly atmosphere and legacy of producing top civil servants (IAS/IPS).",
     description: "Named after former Vice-Chancellor and scholar Dr. Amaranatha Jha. Widely regarded as one of the most prestigious academic residences on campus with dedicated e-library and high-speed campus internet.",
     location: "Near Faculty of Arts Quadrangle & University Library",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "136 newly modernized and ventilated rooms",
       "Dedicated in-house library and e-learning reading zone",
@@ -56,6 +60,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Centenary heritage with the best sports & fitness infrastructure among all university residences, including a dedicated 52-room modern single Annex.",
     description: "Named after Sir Sunder Lal, the first Indian Vice-Chancellor of the University of Allahabad. Features a vibrant corporate life, modern fitness gym, active reading room, and extensive sports grounds.",
     location: "Adjacent to University Science Faculty & Bank Road",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Modern SSL Annex with 52 individual single-occupancy rooms",
       "Fully equipped fitness gymnasium with cardio and strength equipment",
@@ -79,6 +85,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Prestigious academic institution atmosphere with strict administrative discipline and dense alumni network in higher judiciary, civil services, and academia.",
     description: "Named after distinguished Sanskrit scholar and Vice-Chancellor Mahamahopadhyaya Sir Ganganatha Jha. Inmates traditionally treat the hostel as a familial scholarly sanctuary.",
     location: "Chatham Lines / Main University Quadrangle",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "137 rooms situated around a traditional open quadrangle architecture",
       "High concentration of UPSC, UPPCS, and UGC-NET aspirants",
@@ -101,6 +109,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "One of the oldest and most central hostels on campus, situated within direct walking distance of Faculty of Arts classrooms and Central Library.",
     description: "Established during Queen Victoria's Diamond Jubilee year (1897). Highly convenient for Arts faculty students attending early morning lectures.",
     location: "Central University Precinct, next to Faculty of Arts",
+    image: "https://www.allduniv.ac.in/uploads/UniversityHostel/d.j.h.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1576495199011-ab4017460c70?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Immediate 2-minute walking access to Faculty of Arts lecture halls",
       "Student-managed rotating mess with affordable daily meal coupons",
@@ -123,6 +133,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Heritage residential complex situated near Chatham Lines with spacious courtyards and active academic culture.",
     description: "Named in memory of Sir Pramada Charan Banerjee, distinguished jurist and Vice-Chancellor. Provides a quiet, focused environment for degree candidates.",
     location: "Chatham Lines Campus sector",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Spacious quadrangle layout with green shaded courtyards",
       "In-house dining mess and common recreation hall",
@@ -145,6 +157,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Named after eminent historian and former Vice-Chancellor Dr. Tara Chand, providing affordable residential housing.",
     description: "Offers double-seated accommodation with basic utilities, reading room facilities, and student-run mess services.",
     location: "Near Arts Campus perimeter",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1590402494587-44b71d7772f6?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Clean water cooler installations with RO filtration",
       "Affordable dining setup with cooperative student oversight",
@@ -168,6 +182,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Designated Professional Course Hostel catering to B.Tech, M.Tech, MBA, and 5-Year Law (B.A. LL.B.) candidates.",
     description: "Named after philosopher and President Dr. Sarvepalli Radhakrishnan. Designed to support the intensive project and lab schedules of professional students.",
     location: "Near Science & Engineering Complexes",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Exclusive accommodation for Professional degree students",
       "High-speed Wi-Fi network and study terminals",
@@ -190,6 +206,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Built during the University Centenary (1987), designated for Professional and Postgraduate degree students with modern amenities.",
     description: "Provides well-proportioned rooms with modern electrical infrastructure and active mess operations.",
     location: "Chatham Lines campus area",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Designed for professional & master's degree scholars",
       "Well-maintained common recreation hall with TV",
@@ -211,6 +229,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Dedicated residence for international foreign students and overflow research/professional scholars admitted via Foreign Students Advisor.",
     description: "Features single-occupancy rooms with attached bathroom configurations, international student support desk, and cultural exchange spaces.",
     location: "Main University Campus Precinct",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Single-occupancy rooms with upgraded furnishing",
       "Dedicated liaison office with Foreign Students Advisor",
@@ -235,6 +255,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Premier women's residence of Allahabad University with robust 3-tier perimeter security, CCTV monitoring, and strict curfew protocols.",
     description: "Named after the 'Nightingale of India' Sarojini Naidu. Offers a secure, nurturing environment with in-house medical assistance and reading rooms.",
     location: "Women's Campus Complex, Bank Road",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "24/7 multi-tier female security guards and CCTV surveillance",
       "In-house air-cooled library reading room open until 10:00 PM",
@@ -257,6 +279,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Modern multi-storey residential complex with comfortable rooms, solar water heaters, and peaceful study atmosphere.",
     description: "Designed for undergraduate and postgraduate women with excellent sanitation and green recreational gardens.",
     location: "Women's Hostel Enclave",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Solar water heating and continuous backup power",
       "Spacious dining hall with hygienic kitchen setup",
@@ -278,6 +302,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "General women's residence with active academic community and close access to university departments.",
     description: "Equipped with student mess, common room, and automated biometric attendance infrastructure.",
     location: "Women's Campus Precinct",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Automated attendance recording system by 8:00 PM",
       "Safe, gated residential compound with lush gardens",
@@ -299,6 +325,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Designated Professional Girls Hostel for B.Tech, M.Tech, MBA, and Law candidates with modern computing and study infrastructure.",
     description: "Named after astronaut Kalpana Chawla. Tailored to the demanding schedules of professional female students.",
     location: "Chatham Lines / Women's Extension",
+    image: "https://files.yappe.in/place/full/kalpana-chawla-memorial-girls-hostel-139187.webp",
+    fallbackImage: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Dedicated accommodation for Professional degree students",
       "High-speed fiber internet and project discussion rooms",
@@ -320,6 +348,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Professional women's residence named in honor of celebrated Hindi poet and Jnanpith laureate Mahadevi Verma.",
     description: "Features modern architecture, comfortable double-seated rooms, and serene study spaces.",
     location: "Women's Campus Enclave",
+    image: "https://files.yappe.in/place/full/mahadevi-verma-girls-hostel-7292109.webp",
+    fallbackImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Modern architectural layout with ample natural light",
       "Dedicated study rooms and reading lounge",
@@ -341,6 +371,8 @@ export const allUniversityHostels: HostelItem[] = [
     keyFeatures: "Designated accommodation for Foreign female students and select postgraduate/research scholars.",
     description: "Provides specialized amenities, individual room allotments for foreign scholars, and robust security oversight.",
     location: "Main University Campus Area",
+    image: "https://images.shiksha.com/mediadata/images/1745386542php4ymmj9.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&q=80&w=800",
     highlights: [
       "Official residence for International female students",
       "High standard of room maintenance and sanitation",

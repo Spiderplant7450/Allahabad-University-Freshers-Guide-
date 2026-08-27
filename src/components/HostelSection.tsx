@@ -275,38 +275,53 @@ export const HostelSection: React.FC = () => {
                       key={hostel.id}
                       id={`hostel-card-${hostel.id}`}
                       onClick={() => setSelectedHostel(hostel)}
-                      className={`p-4 md:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+                      className={`p-4 md:p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
                         isSelected
                           ? 'bg-white border-l-4 border-l-[#A51C30] border-gray-300 shadow-md ring-1 ring-[#A51C30]/20'
                           : 'bg-white/80 border-gray-200 hover:bg-white hover:border-gray-300'
                       }`}
                     >
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md ${
-                            hostel.category.includes('Girls')
-                              ? 'bg-purple-100 text-purple-800'
-                              : hostel.category.includes('Professional')
-                              ? 'bg-blue-100 text-blue-800'
-                              : hostel.category.includes('International')
-                              ? 'bg-amber-100 text-amber-800'
-                              : 'bg-red-50 text-[#A51C30]'
-                          }`}>
-                            {hostel.category}
-                          </span>
-                          {hostel.established && (
-                            <span className="text-[10px] text-gray-500 font-medium">
-                              Est. {hostel.established}
+                      <div className="flex items-center gap-3.5 min-w-0">
+                        {hostel.image && (
+                          <img
+                            src={hostel.image}
+                            alt=""
+                            referrerPolicy="no-referrer"
+                            onError={(e) => {
+                              if (hostel.fallbackImage) {
+                                (e.target as HTMLImageElement).src = hostel.fallbackImage;
+                              }
+                            }}
+                            className="w-12 h-12 rounded-xl object-cover shrink-0 border border-gray-200"
+                          />
+                        )}
+                        <div className="space-y-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md ${
+                              hostel.category.includes('Girls')
+                                ? 'bg-purple-100 text-purple-800'
+                                : hostel.category.includes('Professional')
+                                ? 'bg-blue-100 text-blue-800'
+                                : hostel.category.includes('International')
+                                ? 'bg-amber-100 text-amber-800'
+                                : 'bg-red-50 text-[#A51C30]'
+                            }`}>
+                              {hostel.category}
                             </span>
-                          )}
+                            {hostel.established && (
+                              <span className="text-[10px] text-gray-500 font-medium">
+                                Est. {hostel.established}
+                              </span>
+                            )}
+                          </div>
+                          <h4 className={`text-sm md:text-base font-bold truncate ${isSelected ? 'text-[#A51C30]' : 'text-[#222222]'}`}>
+                            {hostel.name}
+                          </h4>
+                          <p className="text-xs text-gray-500 flex items-center gap-1.5 truncate">
+                            <MapPin className="w-3 h-3 shrink-0" />
+                            <span className="truncate">{hostel.location}</span>
+                          </p>
                         </div>
-                        <h4 className={`text-sm md:text-base font-bold ${isSelected ? 'text-[#A51C30]' : 'text-[#222222]'}`}>
-                          {hostel.name}
-                        </h4>
-                        <p className="text-xs text-gray-500 flex items-center gap-1.5">
-                          <MapPin className="w-3 h-3 shrink-0" />
-                          <span>{hostel.location}</span>
-                        </p>
                       </div>
                       <ChevronRight className={`w-5 h-5 shrink-0 ${isSelected ? 'text-[#A51C30]' : 'text-gray-400'}`} />
                     </div>
@@ -335,6 +350,31 @@ export const HostelSection: React.FC = () => {
                     <span className="text-xs md:text-sm font-black text-[#222222]">{selectedHostel.rooms}</span>
                   </div>
                 </div>
+
+                {/* Hostel Exterior / Entrance Image */}
+                {selectedHostel.image && (
+                  <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden border border-gray-200 shadow-inner group">
+                    <img
+                      src={selectedHostel.image}
+                      alt={selectedHostel.name}
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        if (selectedHostel.fallbackImage) {
+                          (e.target as HTMLImageElement).src = selectedHostel.fallbackImage;
+                        }
+                      }}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                      <div className="text-white text-xs sm:text-sm font-medium drop-shadow-sm flex items-center justify-between w-full">
+                        <span className="font-semibold">{selectedHostel.shortName} Campus Exterior</span>
+                        <span className="text-[11px] bg-black/40 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+                          {selectedHostel.gender === 'Boys' ? '🧑 Boys Residence' : selectedHostel.gender === 'Girls' ? '👩 Girls Residence' : '🌍 International Residence'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <p className="text-sm md:text-base text-gray-700 leading-relaxed font-normal">
                   {selectedHostel.description}
