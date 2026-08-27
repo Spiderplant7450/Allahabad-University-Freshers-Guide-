@@ -1,0 +1,6 @@
+{
+  "name": "Allahabad University Handbook",
+  "description": "Comprehensive Arts Campus Freshers Guide and UG Bachelors of Arts handbook for University of Allahabad.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
